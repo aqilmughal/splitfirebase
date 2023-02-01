@@ -6,6 +6,14 @@ import { useNavigate } from "react-router-dom";
 const Header = ({ login }) => {
   const navigate = useNavigate();
   const handleRoute = () => navigate("/expense");
+
+  const onHandleSignOut = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("isLogin");
+
+    navigate("/")
+  }
+
   return (
     <header className="main_header">
       <img
@@ -18,20 +26,12 @@ const Header = ({ login }) => {
       <div>
         {!login ? (
           <>
-            <Button
+            <div
               variant="text"
               style={{ color: "white" }}
-              onClick={handleRoute}
             >
               Login
-            </Button>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: "#48be9d" }}
-              onClick={handleRoute}
-            >
-              SignUp
-            </Button>
+            </div>
           </>
         ) : (
           <>
@@ -52,7 +52,7 @@ const Header = ({ login }) => {
             <Button
               variant="contained"
               style={{ backgroundColor: "#48be9d" }}
-              onClick={() => navigate("/")}
+              onClick={() => onHandleSignOut()}
             >
               SignOut
             </Button>

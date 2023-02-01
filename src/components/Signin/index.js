@@ -6,14 +6,15 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 
 export default function SignIn() {
+  
+  let isAuthenticated = localStorage.getItem("isLogin"); 
+
   const navigate = useNavigate();
-  const handleRoute = () => navigate("/");
-  console.log(navigate);
   const [values, setValues] = useState({
     Email: "",
     Password: "",
@@ -22,31 +23,39 @@ export default function SignIn() {
   const [errorMsg, setErrorMsg] = useState(" ");
 
   const handlesubmission = () => {
+
     if (!values.Email || !values.Password) {
-      setErrorMsg("Please fill both Email and Password");}
-     else if (values.Email || values.Password) {
-      return (handleRoute);
-        };
+
+      setErrorMsg("Please fill both Email and Password");
+
+    }else if (values.Email || values.Password) {
+
       signInWithEmailAndPassword(auth, values.Email, values.Password)
-        .then((userCredential) => {
-          // const user = userCredential.user;
-          return navigate("/");
-          
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-  })
+      .then((userCredential) => {
+        localStorage.setItem("accessToken", userCredential.user.accessToken);
+        localStorage.setItem("isLogin", true);
+        navigate("/expense");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      setErrorMsg(errorMessage);
+        console.log(errorCode, errorMessage);
+})
+        };
+
       }
     return (
       <>
+      {!isAuthenticated ? (    
+          <>
         <Header login={false} />
         <div className="sign_container">
           <Card sx={{ width: "40%", maxHeight: 250, marginTop: 20 }}>
             <CardContent sx={{ display: "flex", flexDirection: "column" }}>
               <TextField
                 onChange={(event) =>
-                  setValues((prev) => ({ ...prev, name: event.target.value }))
+                  setValues((prev) => ({ ...prev, Email: event.target.value }))
                 }
                 id="outlined-basic"
                 label="Email"
@@ -55,7 +64,7 @@ export default function SignIn() {
               />
               <TextField
                 onChange={(event) =>
-                  setValues((prev) => ({ ...prev, name: event.target.value }))
+                  setValues((prev) => ({ ...prev, Password: event.target.value }))
                 }
                 id="outlined-basic"
                 label="Password"
@@ -68,7 +77,7 @@ export default function SignIn() {
                 size="small"
                 variant="text"
                 style={{ color: "#48be9d" }}
-                onClick={ () => {handlesubmission(); handleRoute();}   }
+                onClick={ () => handlesubmission()}
               >Login  
                 {/* <h2>
                   {" "}
@@ -80,13 +89,15 @@ export default function SignIn() {
                 size="small"
                 variant="contained"
                 style={{ backgroundColor: "#48be9d" }}
-                onClick={handleRoute}
               >
                 SignUp
               </Button>
             </CardActions>
           </Card>
         </div>
+        </>) : <>
+        {<Navigate to={"/expense"}/>}
+        </>}
       </>
     );
   };

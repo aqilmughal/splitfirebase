@@ -1,12 +1,18 @@
 import React from "react";
 import "./user.css";
 import Header from "../header";
+import {Navigate } from "react-router-dom";
 
 function User() {
+  
+  let isAuthenticated = localStorage.getItem("isLogin"); 
   return (
-    <div>
+    <>
+    {isAuthenticated ? (    <div>
       <Header login={true} />
-    </div>
+    </div>) : <> {<Navigate to="/"/>} </>}
+    </>
+
   );
 }
 

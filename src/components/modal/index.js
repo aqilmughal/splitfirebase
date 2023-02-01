@@ -14,7 +14,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { itemList } from "./constant";
-import Report from "../report ";
+import Report from "../report/index";
 
 const style = {
   position: "absolute",

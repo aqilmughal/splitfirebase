@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect} from "react";
 import Header from "../header";
 import "./expense.css";
 import Button from "@mui/material/Button";
 import BasicModal from "../modal";
+import {Navigate, useNavigate } from "react-router-dom";
 
 function Expense() {
+
+  const navigate = useNavigate();
+  let isAuthenticated = localStorage.getItem("isLogin"); 
+
+  // useEffect(() => {
+  //   if(props.isAuthenticated){
+  //     return;
+  //   }else{
+  //     navigate("/");
+  //   }
+  // },[]);
+
   return (
     <>
+    {isAuthenticated ? (    <>
       <Header login={true} />
       <div className="main_container">
         <header className="header_container">
@@ -40,6 +54,8 @@ function Expense() {
           </div>
         </div>
       </div>
+    </>): <> { <Navigate to="/" />} </>}
+
     </>
   );
 }
