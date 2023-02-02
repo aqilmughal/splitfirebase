@@ -1,9 +1,11 @@
-import * as React from "react";
+import React , { useState }from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+// import { Email } from "firebase/auth";
+// import { auth } from "./Signin/firebase";
 
 const style = {
   position: "absolute",
@@ -22,15 +24,16 @@ const style = {
 export default function UserModal({ mail, setMail }) {
   const [open, setOpen] = React.useState(false);
   const [text, setText] = React.useState("");
-  
+ 
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+ 
   const handleSave = () => {
     setMail([...mail,text]);
     handleClose();
   };
+  
 
   return (
     <div>
@@ -56,7 +59,7 @@ export default function UserModal({ mail, setMail }) {
             onChange={(event) => setText(event.target.value)}
             style={{ width: "100%", marginBottom: 5 }}
           />
-          <Button
+         <Button
             size="small"
             variant="contained"
             style={{ backgroundColor: "#48be9d" }}

@@ -75,23 +75,23 @@ export default function SignIn() {
               <b>{errorMsg}</b>
               <Button
                 size="small"
-                variant="text"
-                style={{ color: "#48be9d" }}
+                variant="Contained"
+                style={{ backgroundColor: "48be9d" }}
                 onClick={ () => handlesubmission()}
-              >Login  
+              >Login
                 {/* <h2>
                   {" "}
                   {props.name ? "Welcome - $ {props.name}" : "Login"}
                 </h2> */}
               </Button>
 
-              <Button
+              {/* <Button
                 size="small"
                 variant="contained"
                 style={{ backgroundColor: "#48be9d" }}
               >
                 SignUp
-              </Button>
+              </Button> */}
             </CardActions>
           </Card>
         </div>

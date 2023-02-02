@@ -8,7 +8,8 @@ function User() {
   let isAuthenticated = localStorage.getItem("isLogin"); 
   return (
     <>
-    {isAuthenticated ? (    <div>
+    {isAuthenticated ? (   
+       <div>
       <Header login={true} />
     </div>) : <> {<Navigate to="/"/>} </>}
     </>

@@ -47,7 +47,7 @@ function Expense() {
           </div>
         </div>
       </div>
-    </>): 
+    </>):
     <> { <Navigate to="/" />} </>}  </>
   );
 }

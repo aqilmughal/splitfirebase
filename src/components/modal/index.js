@@ -110,6 +110,7 @@ export default function BasicModal() {
                   id="standard-basic"
                   variant="standard"
                   placeholder="Enter name or email address"
+                  required
                   value={mail}
                 />
               </div>
@@ -132,6 +133,7 @@ export default function BasicModal() {
                     id="standard-basic"
                     variant="standard"
                     placeholder="Enter description"
+                    required
                     name="des"
                     onChange={(event) => handleChange(event)}
                     value={inputValue?.des}
