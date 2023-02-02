@@ -30,25 +30,25 @@ const Header = ({ login }) => {
               variant="text"
               style={{ color: "white" }}
             >
-              Login
+              
             </div>
           </>
         ) : (
           <>
-            <Button
+            {/* <Button
               variant="text"
               style={{ color: "white" }}
               onClick={() => navigate("/user")}
             >
               User
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               variant="text"
               style={{ color: "white" }}
               onClick={() => navigate("/expense")}
             >
               Add Expense
-            </Button>
+            </Button> */}
             <Button
               variant="contained"
               style={{ backgroundColor: "#48be9d" }}

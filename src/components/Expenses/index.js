@@ -10,26 +10,19 @@ function Expense() {
   const navigate = useNavigate();
   let isAuthenticated = localStorage.getItem("isLogin"); 
 
-  // useEffect(() => {
-  //   if(props.isAuthenticated){
-  //     return;
-  //   }else{
-  //     navigate("/");
-  //   }
-  // },[]);
-
   return (
     <>
-    {isAuthenticated ? (    <>
+    {isAuthenticated ? (    
+    <>
       <Header login={true} />
       <div className="main_container">
         <header className="header_container">
           <h3>Dashboard</h3>
           <div style={{ display: "flex" }}>
             <BasicModal />
-            <Button variant="contained" style={{ backgroundColor: "#48be9d" }}>
+            {/* <Button variant="contained" style={{ backgroundColor: "#48be9d" }}>
               settle up
-            </Button>
+            </Button> */}
           </div>
         </header>
         <div className="header_content">
@@ -45,18 +38,17 @@ function Expense() {
               Click “Add an expense” above to get started, or invite some
               friends first!
             </p>
-            <Button
+            {/* <Button
               variant="contained"
               style={{ backgroundColor: "#ff652f", marginRight: 5 }}
             >
               Add friends on expense
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
-    </>): <> { <Navigate to="/" />} </>}
-
-    </>
+    </>): 
+    <> { <Navigate to="/" />} </>}  </>
   );
 }
 

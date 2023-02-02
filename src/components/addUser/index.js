@@ -22,6 +22,7 @@ const style = {
 export default function UserModal({ mail, setMail }) {
   const [open, setOpen] = React.useState(false);
   const [text, setText] = React.useState("");
+  
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
